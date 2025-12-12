@@ -131,9 +131,6 @@ def main():
             "Stacking": "Ensemble method combining multiple models"
         }
         st.info(model_info[model_choice])
-        
-        st.divider()
-        st.caption("Built with ❤️ using Streamlit")
     
     # Main content
     st.subheader("✍️ Enter Your Text")
@@ -211,3 +208,4 @@ def main():
 # ================================
 if __name__ == "__main__":
     main()
+
