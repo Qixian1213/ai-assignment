@@ -135,25 +135,30 @@ def main():
         st.divider()
         st.caption("Built with ❤️ using Streamlit")
     
+    # Initialize session state for text input
+    if 'text_input' not in st.session_state:
+        st.session_state.text_input = ""
+    
     # Main content
     col1, col2 = st.columns([3, 1])
     with col1:
         st.subheader("✍️ Enter Your Text")
     with col2:
-        example = st.button("📝 Try Example")
-    
-    if example:
-        user_input = "I absolutely love this product! It exceeded all my expectations."
-    else:
-        user_input = ""
+        if st.button("📝 Try Example"):
+            st.session_state.text_input = "I absolutely love this product! It exceeded all my expectations."
+            st.rerun()
     
     user_input = st.text_area(
         "Type or paste your text below:",
-        value=user_input,
+        value=st.session_state.text_input,
         height=150,
         placeholder="e.g., This movie was absolutely fantastic! I loved every moment of it.",
-        label_visibility="collapsed"
+        label_visibility="collapsed",
+        key="text_area"
     )
+    
+    # Update session state with current text
+    st.session_state.text_input = user_input
     
     # Character count
     char_count = len(user_input)
